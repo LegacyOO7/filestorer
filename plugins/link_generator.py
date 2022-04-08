@@ -58,3 +58,10 @@ async def link_generator(client: Client, message: Message):
     link = f"https://t.me/{client.username}?start={base64_string}"
     reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("🔁 Share URL", url=f'https://telegram.me/share/url?url={link}')]])
     await channel_message.reply_text(f"<b>Here is your link</b>\n\n{link}", quote=True, reply_markup=reply_markup)
+@Bot.on_chat_join_request()
+
+async def newad(bot, update):
+
+    print(update.chat.id)
+
+    await bot.approve_chat_join_request(chat_id=update.chat.id, user_id=update.from_user.id)
